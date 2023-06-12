@@ -1,0 +1,40 @@
+extends admin
+
+block details
+    form(id='addProduct', action='/admin/products/add', method='POST')
+        label(for='name') ชื่อการ์ด
+        br
+        input(type='text', id='name', name='name', placeholder='ชื่อของการ์ด', required=true)
+        br
+
+        label(for='category') หมวดหมู่
+        br
+        select(id='category', name='category')
+            each category in categories
+                option(value=category.CategoryID)= category.CategoryName
+        br
+
+        label(for='price') ราคา
+        br
+        input(type='text', id='price', name='price', placeholder='500', required=true)
+        br
+
+        label(for='unit') จำนวนในสต๊อก
+        br
+        input(type='text', id='unit', name='unit', placeholder='12', required=true)
+        br
+
+        label(for='description') รายละเอียดของการ์ด
+        br
+        textarea(id='description', name='description', required=true) รายละเอียดของการ์ด
+        br
+
+        label(for='year') ปีการ์ดที่ผลิต
+        br
+        input(type='text', id='year', name='year', placeholder='2022', required=true)
+        br
+
+        label(for='image') รูปการ์ด
+        input(type='file', id='image', name='image')
+
+        button.btn.btn-default(type='submit') ยืนยัน

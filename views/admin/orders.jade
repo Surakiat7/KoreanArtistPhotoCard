@@ -1,0 +1,28 @@
+extends admin
+
+block details
+    .table-responsive
+        table.table.table-condensed
+            thead
+                tr
+                    td #
+                    td วันที่สั่งซื้อ
+                    td สถานะการจัดส่ง
+                    td ยอดทั้งหมด
+                    td
+            tbody
+                each order in orders
+                    tr
+                        td= order.OrderID
+                        td= order.OrderDate
+                        td= order.Status
+                        td= order.Total + ' บาท'
+                        td
+                            form.dev-form(action='/admin/orders/' + order.OrderID, method='GET')
+                                button.order-btn.btn.btn-default(type='submit')
+                                    i.fa.fa-eye
+                                    = ' ดูรายละเอียด'
+                            form.dev-form(action='/admin/orders/' + order.OrderID + '/update', method='GET')
+                                button.order-btn.btn.btn-default(type='submit')
+                                    i.fa.fa-list
+                                    = ' อัปเดตสถานะ'

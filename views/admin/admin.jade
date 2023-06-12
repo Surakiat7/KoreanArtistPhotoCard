@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+    section
+        .container
+            .row
+                //title here. no duplicate
+                //if navList
+                .col-sm-3
+                    // nav-bar
+                    .left-sidebar
+                        #accordian.panel-group.category-products
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='/admin/cat') หมวดหมู่
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='/admin/products') สินค้า
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='/admin/orders') ออเดอร์
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='/admin/customers') จัดการบัญชี
+
+                .col-sm-9
+                    block details

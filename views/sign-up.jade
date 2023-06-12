@@ -1,0 +1,45 @@
+extends layout
+
+block content
+    section#form
+
+        .container
+            .row
+                .col-sm-3
+
+                    .left-sidebar
+                        #accordian.panel-group.category-products
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='/sign-in') เข้าสู่ระบบ
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='/sign-up') สมัครสมาชิก
+
+                .col-sm-5.text-center
+
+                    .signup-form
+                        h2 สมัครสมาชิก
+                        if checkOutNoti
+                            if (signUpError != '')
+                                p=signUpError
+                            else
+                                p=checkOutNoti
+                        else
+                            if (signUpError != '')
+                                p=signUpError
+
+                        form(id='sign-up', action='/sign-up', method='POST')
+                            input(type='text', name='fullName' placeholder='ชื่อ-สกุล' required=true)
+                            input(type='email', name='email', placeholder='Email' required=true)
+                            input(type='text', name='streetAddress', placeholder='ถนน' required=true)
+                            input(type='text', name='postcode', placeholder='รหัสไปรษณีย์' required=true)
+                            input(type='text', name='city', placeholder='อำเภอ' required=true)
+                            input(type='text', name='country', placeholder='ประเทศ' required=true)
+                            input(type='tel', name='phone', placeholder='เบอร์โททร' required=true)
+                            input(type='text', name='username', placeholder='Username' required=true)
+                            input(type='password', name='password', placeholder='Password' required=true)
+                            input(type='password', name='rePassword', placeholder='Password again' required=true)
+                            button.btn.btn-default(type='submit') ตกลง

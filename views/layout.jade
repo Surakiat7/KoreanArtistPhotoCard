@@ -1,0 +1,128 @@
+doctype html
+html
+    head
+        //metadata
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        meta(name='description', content='aStore Online')
+        meta(name='author', content='aStore. All rights Reserved')
+        //title
+        title= title + ' | PHOTOCARD K-SHOP'
+        //stylesheet
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/css/font-awesome.min.css')
+        link(rel='stylesheet', href='/css/main.css')
+        link(rel='stylesheet', href='/css/responsive.css')
+        //favicon
+        link(rel='shortcut icon', href='/img/ico/favicon.ico')
+        link(rel='apple-touch-icon-precomposed', sizes='144x144', href='/img/ico/apple-touch-icon-144-precomposed.png')
+        link(rel='apple-touch-icon-precomposed', sizes='114x114', href='/img/ico/apple-touch-icon-114-precomposed.png')
+        link(rel='apple-touch-icon-precomposed', sizes='72x72', href='/img/ico/apple-touch-icon-72-precomposed.png')
+        link(rel='apple-touch-icon-precomposed', href='/img/ico/apple-touch-icon-57-precomposed.png')
+    body
+        //header
+        header#header
+            //header_top
+            .header_top
+                .container
+                    .row
+                        .col-sm-12
+                            .shop-menu.pull-right
+                                ul.nav.navbar-nav
+                                    -var orderCus = 'Login'
+                                    -var link = '/sign-in'
+                                    if customer
+                                        -orderCus=customer.FullName
+                                        -link='/usr/'
+                                    li
+                                        a(href=link)
+                                            i.fa.fa-user
+                                            =orderCus
+                                    li
+                                        a(href='/cart')
+                                            i.fa.fa-shopping-cart
+                                            |  ตะกร้า
+                                    if customer
+                                        li
+                                            a(href='/sign-out')
+                                                i.fa.fa-sign-out
+                                                |  ออกจากระบบ
+            ///header_top
+
+            //header-bottom
+            .header-bottom
+                .container
+                    .row
+                        .col-sm-9
+                            .navbar-header
+                                button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                                    span.sr-only Toggle navigation
+                                    span.icon-bar
+                                    span.icon-bar
+                                    span.icon-bar
+                            .mainmenu.pull-left
+                                ul.nav.navbar-nav.collapse.navbar-collapse
+                                    li
+                                        a(class={active: currentUrl === '/'}, href='/')
+                                            | หน้าหลัก
+                                    li
+                                        a(class={active: currentUrl === '/cat/all'}, href='/cat/all')
+                                            | สินค้า
+                        .col-sm-3
+
+        block content
+
+        //Footer
+        footer#footer
+            .footer-widget
+                .container
+                    .row
+                        .col-sm-3
+                            .companyinfo
+                                h2
+                                    span Korean Artist Photo Card
+                        .col-sm-3
+                            .single-widget
+                                h2 ติดตาม
+                                ul.nav.nav-pills.nav-stacked
+                                    li
+                                        a(href='#')
+                                            i.fa.fa-facebook
+                                            | Facebook
+                                    li
+                                        a(href='#')
+                                            i.fa.fa-twitter
+                                            | Twitter
+                                    li
+                                        a(href='#')
+                                            i.fa.fa-youtube
+                                            | Youtube
+                        .col-sm-2
+                            .single-widget
+                                h2 หน้าเพจ
+                                ul.nav.nav-pills.nav-stacked
+                                    li
+                                        a(href='/') หน้าแรก
+
+                        .col-sm-3.col-sm-offset-1
+                            .single-widget
+                                h2 ติดตามข่าวสาร
+                                 ul.nav.nav-pills.nav-stacked
+                                    li
+                                        a(href='#')
+                                            i.fa.fa-instagram
+                                            | Instagram
+            .footer-bottom
+                .container
+                    .row
+                        p.pull-center Copyright © 2022 BY PHOTOCARD K-SHOP
+        ///Footer
+
+        script(src='/js/jquery-2.1.4.min.js')
+        script(src='/js/bootstrap.min.js')
+        script(src='/js/jquery.scrollUp.min.js')
+        script(src='/js/main.js')

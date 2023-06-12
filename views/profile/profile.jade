@@ -1,0 +1,43 @@
+extends info
+
+block details
+
+    .row
+        h3 รายละเอียดของโปรไฟล์
+        .col-sm-6
+            .table-responsive
+                table.table.table-condensed
+                    tbody
+                        tr
+                            td ชื่อ-สกุล
+                            td= customer.FullName
+                        tr
+                            td ที่อยู่
+                            td= customer.StreetAddress
+                        tr
+                            td
+                            td= customer.PostCode + ' ' + customer.City
+                        tr
+                            td
+                            td= customer.Country
+                        tr
+                            td โทรศัพท์
+                            td= customer.Phone
+                        tr
+                            td อีเมล์
+                            td= customer.Email
+                        tr
+                            td Username
+                            td= customer.Username
+    form.dev-form(action='/usr/' + customer.Username + '/edit', method='GET')
+        button.btn.btn-default(type='submit')
+            i.fa.fa-edit
+            = ' แก้ไขโปรไฟล์'
+
+    form.dev-form(action='/usr/' + customer.Username + '/change-password', method='GET')
+        button.btn.btn-default(type='submit')
+            i.fa.fa-key
+            = ' เปลี่ยนรหัสผ่าน'
+    br
+    br
+    br

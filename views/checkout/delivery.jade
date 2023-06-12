@@ -1,0 +1,53 @@
+extends ../layout
+
+block content
+    section#cart_items
+        .container
+            .step-one
+                h2.heading ที่อยู่ในการจัดส่ง
+            .checkout-options
+            .row
+                if addresses
+                    each address in addresses
+                        .cus-name.col-sm-4
+                            h4= address.FullName
+                            p
+                                span= address.StreetAddress
+                                br
+                                span= address.PostCode + ' ' + address.City
+                                br
+                                span= address.Country
+                            p= 'Tel: ' + address.Phone
+
+                            form(action='/checkout/delivery/' + address.AddressID, method='POST')
+                                input.dev-btn.btn.btn-default.add-to-cart(type='submit', value='เลือกที่อยู่จัดส่งปัจจุบัน')
+            .step-one#new-address
+                h2.heading เพิ่มที่อยู่ใหม่
+
+            .checkout-options
+            .shopper-informations
+                .row
+                    .bill-to
+                        form(action='/checkout/delivery/new', method='POST')
+                            .col-sm-1.clearfix
+                            .col-sm-5.clearfix
+                                label(for='fullName') ชื่อ-สกุล
+                                input(type='text', id='fullName', name='fullName')
+                                br
+                                label(for='streetAddress') ที่อยู่ในการจัดส่ง
+                                input(type='text', name='streetAddress', id='streetAddress')
+                                br
+                                label(for='postcode') รหัสไปรษณีย์
+                                input(type='text', name='postcode', id='postcode')
+                                br
+                                label(for='city') อำเภอ
+                                input(type='text', name='city', id='city')
+                                br
+                                label(for='country') ประเทศ
+                                input(type='text', name='country', id='country')
+                                br
+                                label(for='phone') เบอร์โทร
+                                input(type='tel', name='phone', id='phone')
+                                br
+                                br
+                                input.dev-btn.btn.btn-default.add-to-cart(type='submit', value='เลือกที่อยู่จัดส่งใหม่')

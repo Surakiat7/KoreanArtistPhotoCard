@@ -1,0 +1,42 @@
+extends layout
+
+block content
+    section
+        .container
+            .row
+                if product
+
+                    .product-details
+
+                        .col-sm-5
+                            .view-product
+                                img(src='/img/products/' + product.Image, alt=product.ProductName)
+
+                        .col-sm-7
+                            .product-information
+                                h2= product.ProductName
+
+                                p= product.ProductDescription
+
+                                - var availability = 'มีจำหน่าย'
+                                if product.UnitsInStock < 1
+                                    - availability = 'ไม่มีจำหน่าย'
+
+                                p
+                                    b สินค้าในสต๊อก:
+                                    = ' ' + availability
+                                p
+                                    b ปีการ์ดที่ผลิต:
+                                    = ' ' + product.ManufactureYear
+                                span
+                                    span= product.ProductPrice + ' บาท'
+                                    form(action='/cart/' + product.ProductID + '/add', method='POST')
+                                        label จำนวน :
+                                            input(type='text', name='quantity', value='1')
+                                        br
+                                        button.btn.btn-default.add-to-cart(type='submit')
+                                            i.fa.fa-shopping-cart
+                                            | เพิ่มลงในตะกร้า
+
+                                a(href='')
+                                    img.share.img-responsive(src='images/product-details/share.png', alt='')

@@ -1,0 +1,29 @@
+extends info
+
+block details
+    form(id='editProfile', action='/usr/' + customer.Username + '/edit', method='POST')
+        label(for='fullname') ชื่อ-สกุล
+        input(type='text', id='fullname', name='fullName', value=customer.FullName required=true)
+        br
+        label(for='address') ที่อยู่
+        input(type='text', id='address', name='streetAddress', value=customer.StreetAddress required=true)
+        br
+        label(for='postcode') รหัสไปรษณีย์
+        input(type='text', id='postcode', name='postcode', value=customer.PostCode required=true)
+        br
+        label(for='city') อำเภอ
+        input(type='text', id='city', name='city', value=customer.City required=true)
+        br
+        label(for='country') ประเทศ
+        input(type='text', id='country', name='country', value=customer.Country required=true)
+        br
+        label(for='email') อีเมล์
+        input(type='email', id='email', name='email', value=customer.Email required=true)
+        br
+        label(for='phone') เบอร์โทร
+        input(type='tel', id='phone', name='phone', value=customer.Phone required=true)
+        br
+        label(for='password') รหัสผ่าน
+        input(type='password', id='password', name='password', placeholder='กรอกรหัสผ่านเพื่อยืนยัน' required=true)
+        br
+        button.btn.btn-default(type='submit') ยืนยัน

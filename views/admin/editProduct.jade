@@ -1,0 +1,47 @@
+extends admin
+
+block details
+    form(id='editProduct', action='/admin/products/' + product.ProductID + '/edit', method='POST')
+        label(for='name') ชื่อการ์ด
+        br
+        input(type='text', id='name', name='name', value=product.ProductName, required=true)
+        br
+
+        label(for='category') หมวดหมู่
+        br
+        select(id='category', name='category')
+            each category in categories
+                if category.CategoryID == product.CategoryID
+                    option(value=category.CategoryID, selected)= category.CategoryName
+                else
+                    option(value=category.CategoryID)= category.CategoryName
+        br
+
+        label(for='price') ราคา
+        br
+        input(type='text', id='price', name='price', value=product.ProductPrice, required=true)
+        br
+
+        label(for='unit') จำนวนในสต๊อก
+        br
+        input(type='text', id='unit', name='unit', value=product.UnitsInStock, required=true)
+        br
+
+        label(for='description') รายละเอียดของการ์ด
+        br
+        textarea(id='description', name='description', required=true)= product.Description
+        br
+
+        label(for='year') ปีการ์ดที่ผลิต
+        br
+        input(type='text', id='year', name='year', value=product.ManufactureYear, required=true)
+        br
+
+        label(for='image') รูปการ์ด
+        br
+        if product.Image
+            img.dev-img(src='/img/products/' + product.Image, alt=product.ProductName, width='200px')
+        input(type='file', id='image', name='image')
+        br
+
+        button.cus-btn.btn.btn-default(type='submit') ยืนยัน

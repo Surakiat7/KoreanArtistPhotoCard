@@ -1,0 +1,31 @@
+extends admin
+
+block details
+    .table-responsive
+        table.table.table-condensed
+            thead
+                tr
+                    td #
+                    td ชื่อ
+                    td อีเมล์
+                    td Username
+                    td Admin
+                    td
+            tbody
+                each customer in customers
+                    tr
+                        td= customer.UserID
+                        td= customer.FullName
+                        td= customer.Email
+                        td= customer.Username
+                        td
+                            - var admin = 'Yes'
+                            if customer.Admin == 0
+                                - admin = 'No'
+                            = admin
+                        td
+                            if customer.Admin == 0
+                                form.dev-form(action='/admin/customers/' + customer.UserID + '/makeAdmin', method='POST')
+                                    button.cus-btn.btn.btn-default(type='submit')
+                                        i.fa.fa-unlock
+                                        = ' เพิ่มให้เป็นแอดมิน'

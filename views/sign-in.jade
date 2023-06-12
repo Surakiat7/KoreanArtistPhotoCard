@@ -1,0 +1,36 @@
+extends layout
+
+block content
+    section#form
+
+        .container
+            .row
+                .col-sm-3
+
+                    .left-sidebar
+                        #accordian.panel-group.category-products
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='/sign-in') เข้าสู่ระบบ
+                            .panel.panel-default
+                                .panel-heading
+                                    h4.panel-title
+                                        a(href='/sign-up') สมัครสมาชิก
+                .col-sm-4.text-center
+
+                    .login-form
+                        h2 เข้าสู่ระบบ
+                        if checkOutNoti
+                            if (signInError != '')
+                                p=signInError
+                            else
+                                p=checkOutNoti
+                        else
+                            if (signInError != '')
+                                p=signInError
+
+                        form(id='sign-in', action='/sign-in', method='POST')
+                            input(type='text', name='username', placeholder='Username')
+                            input(type='password', name='password', placeholder='Password')
+                            button.btn.btn-default(type='submit') Login

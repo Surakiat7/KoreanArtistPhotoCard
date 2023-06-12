@@ -1,0 +1,83 @@
+extends info
+
+block details
+    .review-payment
+        h2= 'ออเดอร์ #' + order.OrderID
+        p= 'เวลาที่สั่งซื้อ: ' + order.OrderDate
+    .row
+        .col-sm-8
+            .table-responsive.cart_info
+                table.table.table-condensed
+                    thead
+                        tr.cart_menu
+                            td.image
+                            td.description สินค้า
+                            td.price ราคา
+                            td.quantity จำนวน
+                            td.total ทั้งหมด
+                    tbody
+
+                        each product in products
+                            -var quantity = product.Quantity;
+                            -var name = product.ProductName;
+                            -var productLink = '/cat/' + product.CategorySlug + '/' + product.ProductSlug;
+                            -var unitPrice = product.ProductPrice;
+                            -var productTotal = product.Total;
+                            tr
+                                td.cart_product
+                                    a(href=productLink)
+                                        img(src='/img/products/' + product.Image, alt=name)
+                                td.cart_description
+                                    h4
+                                        a(href=productLink)= name
+                                    p= product.Description
+                                td.cart_price
+                                    p= unitPrice + ' บาท'
+                                td.cart_quantity
+                                    p=quantity
+                                td.cart_total
+                                    p.cart_total_price= productTotal + ' บาท'
+
+        .col-sm-4
+            .table-responsive.cart_info
+                if address
+                    table.table.table-condensed.total-result
+                        thead
+                            tr.cart_menu
+                                td(colspan=2) ที่อยู่ในการจัดส่ง
+
+                        tbody
+                            tr
+                                td ชื่อ-สกุล
+                                td= address.FullName
+                            tr
+                                td ที่อยู่
+                                td= address.StreetAddress
+                            tr
+                                td
+                                td= address.PostCode + ' ' + address.City
+                            tr
+                                td
+                                td= address.Country
+                            tr
+                                td เบอร์โทร
+                                td= address.Phone
+
+            .table-responsive.cart_info
+
+                table.table.table-condensed.total-result
+                    thead
+                        tr.cart_menu
+                            td(colspan=2) สรุปออเดอร์
+
+                    tbody
+                        tr.shipping-cost
+                            td จัดส่ง
+                            if order.ShippingFee == 0
+                                td ฟรี
+                            else
+                                td ฟรี
+                        tr
+                            td ทั้งหมด
+                            td
+                                span= order.Total +' บาท' 

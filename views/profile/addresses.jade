@@ -1,0 +1,31 @@
+extends info
+
+block details
+
+    h3 ที่อยู่ในการจัดส่ง
+    each address in addresses
+        .col-sm-4
+            h4= address.FullName
+            //p= address.Email
+            p
+                span= address.StreetAddress
+                br
+                span= address.PostCode + ' ' + address.City
+                br
+                span= address.Country
+            p= 'เบอร์โทร: ' + address.Phone
+
+            form.dev-form(action='/usr/' + customer.Username + '/addresses/' + address.AddressID + '/edit', method='GET')
+                button.btn.btn-default(type='submit')
+                    i.fa.fa-edit
+                    =' แก้ไข'
+
+            form.dev-form(action='/usr/' + customer.Username + '/addresses/' + address.AddressID + '/delete', method='POST')
+                button.btn.btn-default(type='submit')
+                    i.fa.fa-trash-o
+                    = ' ลบ'
+
+    form(action='/usr/' + customer.Username + '/addresses/add', method='GET')
+        button.btn.btn-default(type='submit')
+            i.fa.fa-plus
+            = ' เพิ่มที่อยู่ใหม่'

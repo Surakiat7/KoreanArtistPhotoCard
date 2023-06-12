@@ -1,0 +1,24 @@
+extends info
+
+block details
+    form(action='/usr/' + customer.Username + '/addresses/' + address.AddressID + '/edit', method='POST')
+        label(for='fullName') ชื่อ-สกุล
+        input(type='text', id='fullName', name='fullName', value=address.FullName)
+        br
+        label(for='address') ที่อยู่
+        input(type='text', id='address', name='streetAddress', value=address.StreetAddress)
+        br
+        label(for='postcode') รหัสไปรษณีย์
+        input(type='text', id='postcode', name='postcode', value=address.PostCode)
+        br
+        label(for='city') อำเภอ
+        input(type='text', id='city', name='city', value=address.City)
+        br
+        label(for='country') ประเทศ
+        input(type='text', id='country', name='country', value=address.Country)
+        br
+        label(for='phone') เบอร์โทร
+        input(type='tel', id='phone', name='phone', value=address.Phone)
+        br
+        button.btn.btn-default(type='submit')
+            | ยืนยัน
